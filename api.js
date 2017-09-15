@@ -1,4 +1,5 @@
-/* Wikidata Search Provider for Gnome Shell
+/* Wiktionary Search Provider
+ * derrived from Wikidata Search Provider for Gnome Shell
  *
  * 2015, 2017 Contributors Bahodir Mansurov
  *
@@ -16,12 +17,12 @@ const Soup = imports.gi.Soup;
 const Params = imports.misc.params;
 
 const PROTOCOL = 'https';
-const BASE_URL = 'wikidata.org';
+const BASE_URL = 'wiktionary.org';
 const DEFAULT_LANG = 'en';
 const API_PATH = 'w/api.php';
 const API_LIMIT = 10;
 const HTTP_TIMEOUT = 10;
-const USER_AGENT = 'WikidataSearchProvider extension for GNOME Shell';
+const USER_AGENT = 'WiktionarySearchProvider extension for GNOME Shell';
 
 /**
  * Client that interacts with the Wikidata API
