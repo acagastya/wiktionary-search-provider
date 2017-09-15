@@ -1,6 +1,6 @@
 {
-  "description": "Search wikidata.org directly from GNOME Shell",
-  "name": "Wikidata Search Provider",
+  "description": "Search wiktionary.org directly from GNOME Shell",
+  "name": "Wiktionary Search Provider",
   "shell-version": [
     "3.14",
     "3.16",
@@ -8,7 +8,6 @@
     "3.20",
     "3.22"
   ],
-  "url": "https://github.com/bmansurov/wikidata-search-provider",
-  "uuid": "wikidata-search-provider@bahodir.mansurov.org",
+  "url": "https://github.com/acagastya/wikidata-search-provider",
   "version": 1.3
 }
