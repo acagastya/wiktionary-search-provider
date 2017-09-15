@@ -1,4 +1,5 @@
-/* Wikidata Search Provider for Gnome Shell
+/* Wiktionary Search Provider for GNOME Shell
+ *derrived from Wikidata Search Provider for Gnome Shell
  *
  * 2015, 2017 Contributors Bahodir Mansurov
  *
@@ -7,7 +8,7 @@
  * the Free Software Foundation; either version 3 of the License, or
  * (at your option) any later version.
  *
- * https://github.com/bmansurov/wikidata-search-provider
+ * https://github.com/acagastya/wikidata-search-provider
  *
  */
 
@@ -23,8 +24,8 @@ const Util = imports.misc.util;
 const Me = imports.misc.extensionUtils.getCurrentExtension();
 const Api = Me.imports.api;
 
-const WikidataSearchProvider = new Lang.Class({
-    Name: 'WikidataSearchProvider',
+const WiktionarySearchProvider = new Lang.Class({
+    Name: 'WiktionarySearchProvider',
 
     _init: function() {
         var self = this;
@@ -34,24 +35,24 @@ const WikidataSearchProvider = new Lang.Class({
         this.appInfo = Gio.AppInfo.get_default_for_uri_scheme('https');
         // Fake the name and icon of the app
         this.appInfo.get_name = function() {
-            return 'Wikidata Search Provider';
+            return 'Wiktionary Search Provider';
         };
         this.appInfo.get_icon = function() {
-            return Gio.icon_new_for_string(Me.path + "/wikidata_logo.svg");
+            return Gio.icon_new_for_string(Me.path + "/wiktionary_logo.svg");
         };
 
         // Custom messages that will be shown as search results
         this._messages = {
             '__loading__': {
                 id: '__loading__',
-                name: 'Wikidata',
-                description : 'Loading items from Wikidata, please wait...',
+                name: 'Wiktionary',
+                description : 'Loading items from Wiktionary, please wait...',
                 // TODO: do these kinds of icon creations better
                 createIcon: Lang.bind(this, this.createIcon, {})
             },
             '__error__': {
                 id: '__error__',
-                name: 'Wikidata',
+                name: 'Wiktionary',
                 description : 'Oops, an error occurred while searching.',
                 createIcon: Lang.bind(this, this.createIcon, {})
             }
@@ -105,8 +106,8 @@ const WikidataSearchProvider = new Lang.Class({
     },
 
     /**
-     * Search API if the query is a Wikidata query.
-     * Wikidata query must start with a 'wd' as the first term.
+     * Search API if the query is a Wiktionary query.
+     * Wiktionary query must start with a 'wikt' as the first term.
      * @param {Array} terms
      * @param {Function} callback
      * @param {Gio.Cancellable} cancellable
@@ -114,10 +115,10 @@ const WikidataSearchProvider = new Lang.Class({
     getInitialResultSet: function(terms, callback, cancellable) {
         let meta;
         // terms holds array of search items
-        // The first term must start with a 'wd' (=wikidata).
-        // It can be of the form 'wd', 'wd-en', 'wd-ru'. The part after
+        // The first term must start with a 'wikt' (=wiktionary).
+        // It can be of the form 'wikt', 'wikt-en', 'wikt-ru'. The part after
         // the dash is the search language.
-        if (terms.length >= 2 && terms[0].substr(0, 2) === 'wd') {
+        if (terms.length >= 2 && terms[0].substr(0, 2) === 'wikt') {
             // show the loading message
             this.showMessage('__loading__', callback);
 			// remove previous timeout
@@ -256,20 +257,20 @@ function init() {
 }
 
 function enable() {
-    if (!wikidataSearchProvider) {
-        wikidataSearchProvider = new WikidataSearchProvider();
+    if (!wiktionarySearchProvider) {
+        wiktionarySearchProvider = new WiktionarySearchProvider();
         Main.overview.viewSelector._searchResults._registerProvider(
-            wikidataSearchProvider
+            wiktionarySearchProvider
         );
     }
 }
 
 function disable() {
-    if (wikidataSearchProvider){
+    if (wiktionarySearchProvider){
         Main.overview.viewSelector._searchResults._unregisterProvider(
-            wikidataSearchProvider
+            wiktionarySearchProvider
         );
-        wikidataSearchProvider = null;
+        wiktionarySearchProvider = null;
     }
 }
 
