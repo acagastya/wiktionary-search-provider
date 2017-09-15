@@ -250,7 +250,7 @@ const WiktionarySearchProvider = new Lang.Class({
     }
 });
 
-let wikidataSearchProvider = null;
+let wiktionarySearchProvider = null;
 
 function init() {
     /** noop */
