@@ -17,7 +17,7 @@ const Soup = imports.gi.Soup;
 const Params = imports.misc.params;
 
 const PROTOCOL = 'https';
-const BASE_URL = 'wiktionary.org';
+const BASE_URL = 'en.wiktionary.org';
 const DEFAULT_LANG = 'en';
 const API_PATH = 'w/api.php';
 const API_LIMIT = 10;
